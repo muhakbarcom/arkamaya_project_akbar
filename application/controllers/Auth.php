@@ -14,7 +14,7 @@ class Auth extends CI_Controller
   public function index()
   {
     if ($this->session->userdata('email')) {
-      redirect('dashboard');
+      redirect('project');
     }
     $this->load->view('auth/login');
   }
@@ -46,7 +46,6 @@ class Auth extends CI_Controller
           $session = array(
             'user_id' => $user->id,
             'nama' => $user->nama,
-            'departemen_id' => $user->departemen_id,
             'email' => $user->email,
             'is_login' => TRUE,
           );
@@ -54,7 +53,7 @@ class Auth extends CI_Controller
           $this->session->set_userdata($session);
 
           $this->session->set_flashdata('success', 'Login success');
-          redirect(site_url('dashboard'));
+          redirect(site_url('project'));
         } else {
           $this->session->set_flashdata('error', 'Wrong password');
           $this->index();
